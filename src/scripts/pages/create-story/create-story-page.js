@@ -1,9 +1,9 @@
 import Map from "../../utils/map";
 import Camera from "../../utils/camera";
-import GuestCreateStoryPresenter from "./guest-create-story-presenter";
+import CreateStoryPresenter from "./create-story-presenter";
 import * as StoryAPI from '../../data/api'
 
-export default class GuestCreateStoryPage {
+export default class CreateStoryPage {
 	#presenter = null;
 	#coordinate;
 	#form;
@@ -28,8 +28,8 @@ export default class GuestCreateStoryPage {
 					<label for="pick-picture">Pilih Gambar</label>
 					<input type="file" name="pick-picture" id="pick-picture" class="form-control__document__input">
 					<div class="flex gap-1">
-						<button class="form-control__btn transition" id="pick-picture-btn">Ambil Gambar</button>
-						<button class="form-control__btn transition" id="open-documentations-camera-button">Buka Kamera</button>
+						<button type="button" class="form-control__btn transition" id="pick-picture-btn">Ambil Gambar</button>
+						<button type="button" class="form-control__btn transition" id="open-documentations-camera-button">Buka Kamera</button>
 					</div>
 
 					<div class="form-control__camera__container" id="camera-container">
@@ -60,7 +60,7 @@ export default class GuestCreateStoryPage {
 					<small>*pilih lokasi dengan melakukan pin poin terhadap titik yang dipilih</small>
 				</div>
 
-				<button type="submit" class="action-button__filled">Submit Story</button>
+				<button type="submit" class="action-button__filled" name="submit">Submit Story</button>
 			</form>
 		</section>
 		
@@ -68,7 +68,7 @@ export default class GuestCreateStoryPage {
 	}
 
 	async afterRender() {
-		this.#presenter = new GuestCreateStoryPresenter({
+		this.#presenter = new CreateStoryPresenter({
 			view: this,
 			model: StoryAPI,
 		})

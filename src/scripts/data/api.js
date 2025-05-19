@@ -34,7 +34,7 @@ export async function getStoryById(id) {
  * @method createStory
  * create one story with requested data
 */
-export async function createStory({ description, file, lat, lon, isGuest }) {
+export async function createStory({ description, photo, lat, lon, isGuest }) {
 
   /** 
    * Get Authenticated token from user
@@ -46,18 +46,18 @@ export async function createStory({ description, file, lat, lon, isGuest }) {
   */
   const storyForm = new FormData();
   storyForm.append('description', description);
-  storyForm.append('photo', file);
+  storyForm.append('photo', photo);
   storyForm.append('lat', lat);
   storyForm.append('lon', lon);
 
   /** 
    * Check if the create story for guest or not
   */
-  const header = !isGuest ? {
-    'Content-Type': 'multipart/form-data', Authorization: `Bearer ${accessToken}`
-  } : {
-    'Content-Type': 'multipart/form-data'
+  const header = {
+    Authorization: `Bearer ${accessToken}`
   }
+
+  console.log(header)
 
   /**
    * Request new story
@@ -69,6 +69,8 @@ export async function createStory({ description, file, lat, lon, isGuest }) {
   })
 
   const json = fetchResponse.json();
+
+  if (!fetchResponse.ok) throw new Error(json.message);
 
   return {
     ...json,

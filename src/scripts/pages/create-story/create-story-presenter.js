@@ -1,5 +1,5 @@
 
-export default class GuestCreateStoryPresenter {
+export default class CreateStoryPresenter {
 	#view;
 	#model;
 
@@ -13,8 +13,9 @@ export default class GuestCreateStoryPresenter {
 	 * handle request for uploading new story for guest
 	*/
 	async handleSendStoryGuest({ description, photo, lat, lon }) {
+		console.log('dipresenter', { description, photo, lat, lon })
 		try {
-			const response = await this.#model.createStory({ description, photo, lat, lon, isGuest: true })
+			const response = await this.#model.createStory({ description, photo, lat, lon })
 			console.log(response)
 		} catch (error) {
 			console.log(error)

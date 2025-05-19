@@ -6,25 +6,24 @@ import * as AuthModel from '../../../utils/auth'
 export default class LoginPage {
 
 	#presenter = null;
-	#isLoading = false;
 
 	async render() {
 		return `
 		<section class="container">
-			<form class="auth-form" id="auth-form" method="POST">
-				<div class="auth-form__header">
-					<h1 class="auth-form__heading">Welcome Back Stringers!</h1>
+			<form class="form-control" id="auth-form" method="POST">
+				<div class="form-control__header">
+					<h1 class="form-control__heading">Welcome Back Stringers!</h1>
 					<p>Digital place to share your stories or memories to people around the world</p>
 				</div>
 				
 
 				<div id="alert-container"></div>
 
-				<div class="auth-form__input-group">
+				<div class="form-control__input-group">
 					<label for="email-input">Email Address</label>
 					<input type="email" id="email-input" name="email" required>
 				</div>
-				<div class="auth-form__input-group">
+				<div class="form-control__input-group">
 					<label for="password-input">Password</label>
 					<input type="password" id="password-input" name="password" required>
 				</div>

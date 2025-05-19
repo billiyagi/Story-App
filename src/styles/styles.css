@@ -260,13 +260,13 @@ body {
     rotate 300ms;
 }
 
-/* Auth Form (Login & Register) */
-.auth-form {
+/* Auth Form */
+.form-control {
   margin: 20px auto;
-  width: 40%;
+  width: 50%;
 }
 
-.auth-form button {
+.form-control button[type='submit'] {
   width: 100%;
   display: block;
   font-size: 1rem;
@@ -276,32 +276,57 @@ body {
   padding: 14px 20px;
 }
 
-.auth-form .action-button__bordered {
+.form-control .action-button__bordered {
   width: 100%;
   display: block;
   font-size: 1rem;
   text-align: center;
 }
 
-.auth-form__header {
+.form-control__btn {
+  border-radius: 5px;
+  background: white;
+  border: 2px solid black;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+.form-control__btn:hover {
+  background: black;
+  color: white;
+}
+
+.form-control__btn__filled {
+  border-radius: 5px;
+  background: black;
+  border: 2px solid black;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+.form-control__header {
   margin-bottom: 2rem;
 }
 
-.auth-form__heading {
+.form-control__heading {
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
 
-.auth-form__input-group {
+.form-control__input-group {
   margin: 15px 0;
 }
 
-.auth-form__input-group label {
+.form-control__input-group label {
   display: block;
   margin-bottom: 5px;
 }
 
-.auth-form__input-group input {
+.form-control__input-group input {
   width: 100%;
   padding: 15px 10px;
   font-size: 1rem;
@@ -309,13 +334,13 @@ body {
   border-radius: 5px;
 }
 
-.auth-form__input-group input:focus {
+.form-control__input-group input:focus {
   background: rgb(249, 249, 249);
   outline-style: solid;
   outline-color: #000;
 }
 
-.auth-form__input-group textarea {
+.form-control__input-group textarea {
   width: 100%;
   padding: 15px 10px;
   font-size: 1rem;
@@ -323,7 +348,7 @@ body {
   border-radius: 5px;
 }
 
-.auth-form__input-group textarea:focus {
+.form-control__input-group textarea:focus {
   background: rgb(249, 249, 249);
   outline-style: solid;
   outline-color: #000;
@@ -386,6 +411,88 @@ body {
   object-fit: cover;
 }
 
+/* Maps */
+.form-control__location__container {
+  height: auto;
+  margin-bottom: 3rem;
+}
+
+.form-control__title {
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.form-control__location__container small {
+  color: rgb(114, 114, 114);
+}
+
+.form-control__location__maps {
+  height: 400px;
+  width: 100%;
+}
+
+.form-control__location_latlng {
+  display: flex;
+  margin: 1rem 0;
+  gap: 10px;
+}
+
+.form-control__location_latlng input {
+  width: 100%;
+  padding: 15px 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.form-control__location_latlng input:focus {
+  background: rgb(249, 249, 249);
+  outline-style: solid;
+  outline-color: #000;
+}
+
+/* Camera */
+.form-control__document__container {
+  margin-bottom: 2rem;
+}
+
+.form-control__document__container label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.form-control__camera__container {
+  display: none;
+  margin-top: 1rem;
+}
+.new-form__camera__canvas {
+  height: 100px;
+}
+.camera__open {
+  display: block !important;
+}
+
+.form-control__document__input {
+  display: none;
+}
+.form-control__camera__tools_buttons {
+  margin-top: 15px;
+}
+
+.form-control__camera__tools select {
+  width: 100%;
+  padding: 15px 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.form-control__camera__tools select:focus {
+  background: rgb(249, 249, 249);
+  outline-style: solid;
+  outline-color: #000;
+}
+
 /* Write your styles more here */
 
 @media screen and (width > 1000px) {
@@ -413,7 +520,7 @@ body {
 }
 
 @media only screen and (max-width: 1048px) {
-  .auth-form {
+  .form-control {
     margin: 30px auto;
     width: 100%;
   }

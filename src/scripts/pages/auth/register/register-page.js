@@ -10,23 +10,23 @@ export default class RegisterPage {
 	async render() {
 		return `
 		<section class="container">
-			<form class="auth-form" id="register-form" method="POST">
-				<div class="auth-form__header">
-					<h1 class="auth-form__heading">Register your account</h1>
+			<form class="form-control" id="register-form" method="POST">
+				<div class="form-control__header">
+					<h1 class="form-control__heading">Register your account</h1>
 					<p>Make your own digital place to put your stories</p>
 				</div>
 
 				<div id="alert-container"></div>
 
-				<div class="auth-form__input-group">
+				<div class="form-control__input-group">
 					<label for="name-input">Nama</label>
 					<input type="text" id="name-input" name="name" required>
 				</div>
-				<div class="auth-form__input-group">
+				<div class="form-control__input-group">
 					<label for="email-input">Email Address</label>
 					<input type="email" id="email-input" name="email" required>
 				</div>
-				<div class="auth-form__input-group">
+				<div class="form-control__input-group">
 					<label for="password-input">Password</label>
 					<input type="password" id="password-input" name="password" required>
 				</div>
