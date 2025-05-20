@@ -9,6 +9,7 @@ export default class HomePage {
   async render() {
     return `
       <section class="container">
+        <h1>List of Story</h1>
         <div id="alert-container"></div>
         <div id="loading-container"></div>
         <div class="story-list" id="story-list-container">
