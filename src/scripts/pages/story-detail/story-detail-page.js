@@ -69,8 +69,9 @@ export default class StoryDetail {
 			zoom: 10,
 			locate: false,
 		});
-		map.getCenter()
+
 		map.addMarker([lat, lon], { draggable: false }, { content: `Position of ${name}` })
+		map.changeCamera([lat, lon], 15);
 	}
 
 	hideLoadingRender() {

@@ -3,7 +3,7 @@ export function storyCard({ name, description, photoUrl, createdAt, lat, lon, id
   return `
     <a href="/#/story/${id}" class="story-card">
       <div class="story-card__image">
-        <img src="${photoUrl}" alt="${id}">
+        <img src="${photoUrl}" alt="The ${name} Story">
       </div>
       
       <div class="story-card__items__container">
@@ -36,7 +36,6 @@ export function generateUnauthenticatedNavigationListTemplate() {
   return `<ul id="nav-list" class="nav-list">
               <li><a href="#/">Beranda</a></li>
               <li><a href="#/about">About</a></li>
-              <li><a href="#/guest-create-story" class="only-for-mobile">Buat Story</a></li>
             </ul>`;
 }
 

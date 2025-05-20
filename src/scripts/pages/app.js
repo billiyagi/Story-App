@@ -2,6 +2,7 @@ import routes, { protectedRoutes, publicRoutes } from '../routes/routes';
 import { getActiveRoute } from '../routes/url-parser';
 import { getAccessToken, getLogout } from '../utils/auth';
 import { generateAuthenticatedNavigationActionListTemplate, generateAuthenticatedNavigationListTemplate, generateUnauthenticatedNavigationActionListTemplate, generateUnauthenticatedNavigationListTemplate } from '../templates';
+import { skipToContent, transitionHelper } from '../utils';
 
 class App {
   #content = null;
@@ -56,7 +57,7 @@ class App {
     const isLogin = !!getAccessToken();
     const url = getActiveRoute();
     const page = routes[url];
-    this.#setupNavigationList()
+
 
     // Redirect jika user belum login
     if (protectedRoutes.includes(url) && !isLogin) {
@@ -70,8 +71,24 @@ class App {
       return;
     }
 
-    this.#content.innerHTML = await page.render();
-    await page.afterRender();
+    // this.#setupNavigationList()
+    // this.#content.innerHTML = await page.render();
+    // await page.afterRender();
+
+    skipToContent(document.querySelector('#skip-button'), document.querySelector('#main-content'));
+
+    const transition = transitionHelper({
+      updateDOM: async () => {
+        this.#content.innerHTML = await page.render();
+        page.afterRender();
+      },
+    });
+
+    transition.ready.catch(console.error);
+    transition.updateCallbackDone.then(() => {
+      scrollTo({ top: 0, behavior: 'instant' });
+      this.#setupNavigationList();
+    });
   }
 
   #setupNavigationList() {

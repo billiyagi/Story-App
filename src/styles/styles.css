@@ -540,6 +540,30 @@ body {
   outline-color: #000;
 }
 
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.skip-link:focus {
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, 50%);
+  width: auto;
+  height: auto;
+  padding: 1rem;
+  background: black;
+  color: white;
+  z-index: 1000;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+}
+
 /* Write your styles more here */
 
 @media screen and (width > 1000px) {

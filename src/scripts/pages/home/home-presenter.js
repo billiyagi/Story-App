@@ -11,7 +11,6 @@ export default class HomePresenter {
 		this.#view.showLoadingRender()
 		try {
 			const response = await this.#model.getStories();
-			console.log('response stories', response)
 			this.#view.renderStory(response.listStory)
 		} catch (error) {
 			this.#view.fetchingStoriesFailed(error)

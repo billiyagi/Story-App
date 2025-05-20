@@ -14,8 +14,6 @@ export default class HomePage {
         <div class="story-list" id="story-list-container">
         </div>
       </section>
-
-      
     `;
   }
 
