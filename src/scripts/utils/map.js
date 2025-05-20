@@ -57,6 +57,10 @@ export default class Map {
 		};
 	}
 
+	addPopup(popup) {
+		this.#map.bindPopup(popup);
+	}
+
 	static isGeolocationAvailable() {
 		return 'geolocation' in navigator;
 	}
@@ -87,7 +91,6 @@ export default class Map {
 		if ('locate' in options && options.locate) {
 			try {
 				const position = await Map.getCurrentPosition();
-				console.log('currentPosition', position);
 				const coordinate = [position.coords.latitude, position.coords.longitude];
 
 				return new Map(selector, {

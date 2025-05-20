@@ -88,7 +88,6 @@ export default class Camera {
 
 	async launch() {
 		this.#currentStream = await this.#getStream();
-		// console.log()
 		Camera.addNewStream(this.#currentStream);
 
 		this.#videoElement.srcObject = this.#currentStream;
@@ -142,7 +141,6 @@ export default class Camera {
 	}
 
 	static stopAllStreams() {
-		console.log(typeof window.currentStreams, !Array.isArray(window.currentStreams));
 		if (!Array.isArray(window.currentStreams)) {
 			window.currentStreams = [];
 			return;

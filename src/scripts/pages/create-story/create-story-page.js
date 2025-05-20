@@ -2,6 +2,7 @@ import Map from "../../utils/map";
 import Camera from "../../utils/camera";
 import CreateStoryPresenter from "./create-story-presenter";
 import * as StoryAPI from '../../data/api'
+import { alertHelper } from "../../utils";
 
 export default class CreateStoryPage {
 	#presenter = null;
@@ -19,18 +20,21 @@ export default class CreateStoryPage {
 					<h1 class="form-control__heading">Create new story</h1>
 				</div>
 
+				<div id="alert-container"></div>
+
 				<div class="form-control__input-group">
 					<label for="description-input">Deskripsi</label>
-					<textarea name="description" id="description-input" rows="7"></textarea>
+					<textarea name="description" id="description-input" rows="7" required></textarea>
 				</div>
 
 				<div class="form-control__document__container">
 					<label for="pick-picture">Pilih Gambar</label>
-					<input type="file" name="pick-picture" id="pick-picture" class="form-control__document__input">
 					<div class="flex gap-1">
 						<button type="button" class="form-control__btn transition" id="pick-picture-btn">Ambil Gambar</button>
 						<button type="button" class="form-control__btn transition" id="open-documentations-camera-button">Buka Kamera</button>
 					</div>
+
+					<input type="file" name="pick-picture" id="pick-picture" class="form-control__document__input">
 
 					<div class="form-control__camera__container" id="camera-container">
 						<video id="camera-video" class="new-form__camera__video">
@@ -60,7 +64,9 @@ export default class CreateStoryPage {
 					<small>*pilih lokasi dengan melakukan pin poin terhadap titik yang dipilih</small>
 				</div>
 
-				<button type="submit" class="action-button__filled" name="submit">Submit Story</button>
+				<div id="create-story-submit-container">
+					<button type="submit" class="action-button__filled" name="submit">Submit Story</button>
+				</div>
 			</form>
 		</section>
 		
@@ -82,8 +88,16 @@ export default class CreateStoryPage {
 
 		this.#form.addEventListener('submit', async (event) => {
 			event.preventDefault();
-			console.log(this.#takenPictureResult);
-			console.log(this.#coordinate);
+
+			if (!this.#coordinate) {
+				alert('Koordinat belum diset');
+				return;
+			}
+
+			if (!this.#takenPictureResult) {
+				alert('Gambar belum diupload');
+				return;
+			}
 
 			return await this.#presenter.handleSendStoryGuest({
 				description: document.querySelector('#description-input').value,
@@ -97,7 +111,18 @@ export default class CreateStoryPage {
 		 * Pick picture from storage
 		*/
 		document.querySelector('#pick-picture-btn').addEventListener('click', () => {
-			this.#form.elements.namedItem('pick-picture').click();
+			const inputFile = this.#form.elements.namedItem('pick-picture');
+
+			inputFile.click();
+			inputFile.classList.add('document__open');
+
+			document.querySelector('#open-documentations-camera-button').setAttribute('disabled', 'disabled');
+
+			// Take the file
+			inputFile.addEventListener('change', (event) => {
+				this.#takenPictureResult = inputFile.files[0];
+			})
+
 		})
 
 		/** 
@@ -137,8 +162,6 @@ export default class CreateStoryPage {
 
 		this.#camera.addCheeseButtonListener('#camera-take-button', async () => {
 			const image = await this.#camera.takeCameraPicture();
-			alert(URL.createObjectURL(image));
-			console.log(image);
 			this.#takenPictureResult = image;
 		})
 	}
@@ -181,5 +204,29 @@ export default class CreateStoryPage {
 			lat: latitude,
 			lng: longtitude
 		}
+	}
+
+	createStorySuccessfully() {
+		alert('Create Story Success')
+		location.hash = '/';
+	}
+
+	createStoryFailed(message) {
+		return alertHelper({ message: message })
+	}
+
+	showLoadingSubmit() {
+		document.querySelector('#create-story-submit-container').innerHTML = `
+		<button type="submit" class="action-button__filled" name="submit" disabled>
+			<div class="flex items-center justify-center gap-1">
+				<span class="loader loader__btn"></span> <span>Loading</span>
+			</div>
+		</button>`
+	}
+
+	hideLoadingSubmit() {
+		document.querySelector('#create-story-submit-container').innerHTML = `
+		<button type="submit" class="action-button__filled" name="submit">Submit Story</button>
+		`
 	}
 }

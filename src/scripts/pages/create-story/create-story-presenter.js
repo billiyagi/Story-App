@@ -13,14 +13,16 @@ export default class CreateStoryPresenter {
 	 * handle request for uploading new story for guest
 	*/
 	async handleSendStoryGuest({ description, photo, lat, lon }) {
-		console.log('dipresenter', { description, photo, lat, lon })
+		this.#view.showLoadingSubmit();
 		try {
 			const response = await this.#model.createStory({ description, photo, lat, lon })
-			console.log(response)
+			console.log(response);
+
+			this.#view.createStorySuccessfully()
 		} catch (error) {
-			console.log(error)
+			this.#view.createStoryFailed()
 		} finally {
-			console.log('upload finish')
+			this.#view.hideLoadingSubmit();
 		}
 	}
 }

@@ -1,4 +1,4 @@
-import routes from '../routes/routes';
+import routes, { protectedRoutes, publicRoutes } from '../routes/routes';
 import { getActiveRoute } from '../routes/url-parser';
 import { getAccessToken, getLogout } from '../utils/auth';
 import { generateAuthenticatedNavigationActionListTemplate, generateAuthenticatedNavigationListTemplate, generateUnauthenticatedNavigationActionListTemplate, generateUnauthenticatedNavigationListTemplate } from '../templates';
@@ -53,9 +53,22 @@ class App {
   }
 
   async renderPage() {
+    const isLogin = !!getAccessToken();
     const url = getActiveRoute();
     const page = routes[url];
     this.#setupNavigationList()
+
+    // Redirect jika user belum login
+    if (protectedRoutes.includes(url) && !isLogin) {
+      location.hash = '/login';
+      return;
+    }
+
+    // Redirect jika user sudah login
+    if (publicRoutes.includes(url) && isLogin) {
+      location.hash = '/';
+      return;
+    }
 
     this.#content.innerHTML = await page.render();
     await page.afterRender();
@@ -80,8 +93,6 @@ class App {
       navListMain.innerHTML = generateAuthenticatedNavigationListTemplate();
       navActionMain.innerHTML = generateAuthenticatedNavigationActionListTemplate();
     }
-
-    console.log('user login', isLogin);
 
     const logoutButton = document.querySelector('#logout-button')
     if (logoutButton) {

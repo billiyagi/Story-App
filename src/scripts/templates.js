@@ -1,28 +1,26 @@
-export function storyCard({ name, description, photoUrl, createdAt, lat, lon }) {
+import { showFormattedDate } from "./utils";
+export function storyCard({ name, description, photoUrl, createdAt, lat, lon, id }) {
   return `
-    <div class="story-card">
-      <div class="story-card__header">
-        <div class="story-card__account">
-          <img src="https://ui-avatars.com/api/?name=${name}&background=random&color=fff" alt="Avatar">
-          <span>Febry Billiyagi</span>
+    <a href="/#/story/${id}" class="story-card">
+      <div class="story-card__image">
+        <img src="${photoUrl}" alt="${id}">
+      </div>
+      
+      <div class="story-card__items__container">
+        <div class="story-card__items">
+          <div class="story-card__title">Pembuat</div>
+          <div class="story-card__description">${name}</div>
         </div>
-        <div class="story-card__location">
-          <a href="#" class="action-button__filled flex items-center gap-1">
-            <span class="flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="action-button__icon">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-            </svg>
-            </span>
-
-            <span>Lihat Lokasi</span>
-          </a>
+        <div class="story-card__items">
+          <div class="story-card__title">Deskripsi</div>
+          <div class="story-card__description">${description}</div>
+        </div>
+        <div class="story-card__items">
+          <div class="story-card__title">Dibuat</div>
+          <div class="story-card__description">${showFormattedDate(createdAt)}</div>
         </div>
       </div>
-      <a href="#" class="story-card__image">
-        <img src="https://rekyndness.id/storage/products/pjH4NNZeG9jfuGDo2Yp2r5rkLszonqw9kPoJ5OKT.jpg" alt="">
-      </a>
-    </div>
+    </a>
     `;
 }
 
@@ -43,25 +41,7 @@ export function generateUnauthenticatedNavigationListTemplate() {
 }
 
 export function generateUnauthenticatedNavigationActionListTemplate() {
-  return `<a
-            href="#/guest-create-story"
-            class="action-button__bordered transition flex items-center gap-1 hidden-at-mobile"
-          >
-            <span class="flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="currentColor"
-                class="action-button__icon"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-              </svg>
-            </span>
-            Buat Story</a
-          >
-          <a href="#/login" class="action-button__filled flex items-center gap-1">
+  return `<a href="#/login" class="action-button__filled flex items-center gap-1">
             <span class="flex items-center"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"

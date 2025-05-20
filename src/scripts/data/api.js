@@ -17,8 +17,24 @@ const ENDPOINTS = {
  * get all stories data
 */
 export async function getStories() {
-  const fetchResponse = await fetch(ENDPOINTS.ENDPOINT);
-  return await fetchResponse.json();
+
+  const accessToken = getAccessToken();
+
+  const fetchResponse = await fetch(ENDPOINTS.STORY.ALL, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`
+    }
+  });
+
+  const json = await fetchResponse.json()
+
+  if (!fetchResponse.ok) throw new Error(json.message);
+
+
+  return {
+    ...json,
+    ok: fetchResponse.ok
+  }
 }
 
 /** 
@@ -26,15 +42,30 @@ export async function getStories() {
  * get one story data by its id
 */
 export async function getStoryById(id) {
-  const fetchResponse = await fetch(ENDPOINTS.STORY.SHOW(id));
-  return await fetchResponse.json();
+  const accessToken = getAccessToken();
+
+  const fetchResponse = await fetch(ENDPOINTS.STORY.SHOW(id), {
+    headers: {
+      Authorization: `Bearer ${accessToken}`
+    }
+  });
+
+  const json = await fetchResponse.json()
+
+  if (!fetchResponse.ok) throw new Error(json.message);
+
+
+  return {
+    ...json,
+    ok: fetchResponse.ok
+  }
 }
 
 /** 
  * @method createStory
  * create one story with requested data
 */
-export async function createStory({ description, photo, lat, lon, isGuest }) {
+export async function createStory({ description, photo, lat, lon }) {
 
   /** 
    * Get Authenticated token from user
