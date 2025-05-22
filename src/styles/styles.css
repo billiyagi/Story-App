@@ -10,6 +10,11 @@ body {
   font-style: normal;
 }
 
+footer {
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+}
+
 .alert {
   width: 100%;
   border: 1px solid #ddd;
@@ -591,6 +596,9 @@ body {
 }
 
 @media only screen and (max-width: 1048px) {
+  footer {
+    text-align: center;
+  }
   .story-detail {
     width: 100%;
   }
