@@ -99,7 +99,7 @@ export default class CreateStoryPage {
 				return;
 			}
 
-			return await this.#presenter.handleSendStoryGuest({
+			return await this.#presenter.handleSendStory({
 				description: document.querySelector('#description-input').value,
 				photo: this.#takenPictureResult,
 				lat: this.#coordinate.lat,

@@ -88,8 +88,6 @@ export async function createStory({ description, photo, lat, lon }) {
     Authorization: `Bearer ${accessToken}`
   }
 
-  console.log(header)
-
   /**
    * Request new story
   */

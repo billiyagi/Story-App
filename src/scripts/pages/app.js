@@ -71,10 +71,6 @@ class App {
       return;
     }
 
-    // this.#setupNavigationList()
-    // this.#content.innerHTML = await page.render();
-    // await page.afterRender();
-
     skipToContent(document.querySelector('#skip-button'), document.querySelector('#main-content'));
 
     const transition = transitionHelper({
