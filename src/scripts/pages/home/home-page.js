@@ -58,4 +58,8 @@ export default class HomePage {
   fetchingStoriesFailed(message) {
     return alertHelper({ message: message });
   }
+
+  showOfflineRender() {
+    return alertHelper({ message: 'Anda sedang offline', type: 'alert__info' });
+  }
 }

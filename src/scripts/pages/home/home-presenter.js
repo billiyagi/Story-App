@@ -13,7 +13,13 @@ export default class HomePresenter {
 			const response = await this.#model.getStories();
 			this.#view.renderStory(response.listStory)
 		} catch (error) {
-			this.#view.fetchingStoriesFailed(error)
+
+			// Check if offline
+			if (!navigator.onLine) {
+				this.#view.showOfflineRender()
+			} else {
+				this.#view.fetchingStoriesFailed(error)
+			}
 		} finally {
 			this.#view.hideLoadingRender()
 		}

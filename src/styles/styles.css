@@ -27,6 +27,30 @@ footer {
   gap: 10px;
 }
 
+.alert__warning {
+  width: 100%;
+  border: 1px solid rgb(255, 255, 42);
+  background: rgb(247, 255, 27);
+  padding: 10px;
+  border-radius: 10px;
+  color: black;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.alert__info {
+  width: 100%;
+  border: 1px solid rgb(145, 202, 255);
+  background: rgb(232, 244, 255);
+  padding: 10px;
+  border-radius: 10px;
+  color: black;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .alert__icon {
   width: 20px;
 }
