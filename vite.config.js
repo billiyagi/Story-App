@@ -30,11 +30,11 @@ export default defineConfig({
         'images/icons/info.png' // pastikan file ini ada
       ],
       manifest: {
-        id: '/',
+        id: '/index.html',
         name: 'String Story',
         short_name: 'Story',
         description: 'With String Story you can store all of your story, anytime, and anywhere you go! This app is made by Febry Billiyagi, you can see at github @billiyagi',
-        start_url: '/',
+        start_url: '/index.html',
         display: 'standalone',
         background_color: '#ffffff',
         theme_color: '#ffffff',
@@ -57,6 +57,11 @@ export default defineConfig({
           {
             src: 'favicon-196x196.png',
             sizes: '196x196',
+            type: 'image/png'
+          },
+          {
+            src: 'favicon-192x192.png',
+            sizes: '192x192',
             type: 'image/png'
           },
           {
