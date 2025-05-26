@@ -1,8 +1,9 @@
 import routes, { protectedRoutes, publicRoutes } from '../routes/routes';
 import { getActiveRoute } from '../routes/url-parser';
 import { getAccessToken, getLogout } from '../utils/auth';
-import { generateAuthenticatedNavigationActionListTemplate, generateAuthenticatedNavigationListTemplate, generateUnauthenticatedNavigationActionListTemplate, generateUnauthenticatedNavigationListTemplate } from '../templates';
+import { generateAuthenticatedNavigationActionListTemplate, generateAuthenticatedNavigationListTemplate, generateUnauthenticatedNavigationActionListTemplate, generateUnauthenticatedNavigationListTemplate, generateSubcribeButton } from '../templates';
 import { skipToContent, transitionHelper } from '../utils';
+import { isNotificationGranted, subscribe, isCurrentPushSubscriptionAvailable, unsubscribe } from '../utils/notification';
 
 class App {
   #content = null;
@@ -17,6 +18,31 @@ class App {
     this.#navigationActionDrawer = navigationActionDrawer;
 
     this.#setupDrawer();
+  }
+
+  async #setupPushNotification() {
+
+    // Check if subscribed
+    const isSubscribed = await isCurrentPushSubscriptionAvailable();
+
+    // Generate button subscribe
+    generateSubcribeButton(isSubscribed)
+
+    if (isSubscribed) {
+      document.querySelector('#unsubscribe-notification').addEventListener('click', () => {
+        unsubscribe().finally(() => {
+          this.#setupPushNotification();
+        });
+      });
+
+      return;
+    } else {
+      document.querySelector('#subscribe-notification').addEventListener('click', () => {
+        subscribe().finally(() => {
+          this.#setupPushNotification();
+        });
+      })
+    }
   }
 
 
@@ -105,6 +131,7 @@ class App {
     if (isLogin) {
       navListMain.innerHTML = generateAuthenticatedNavigationListTemplate();
       navActionMain.innerHTML = generateAuthenticatedNavigationActionListTemplate();
+      this.#setupPushNotification();
     }
 
     const logoutButton = document.querySelector('#logout-button')

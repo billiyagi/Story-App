@@ -17,7 +17,17 @@ export default defineConfig({
   },
   plugins: [
     VitePWA({
+      devOptions: {
+        enabled: true,
+        type: 'module'
+      },
       registerType: 'autoUpdate',
+      strategies: 'injectManifest',
+      srcDir: '/',
+      filename: 'sw.js',
+      injectManifest: {
+        swSrc: 'src/sw.js'
+      },
       includeAssets: [
         'favicon.ico',
         'robots.txt',
@@ -119,40 +129,6 @@ export default defineConfig({
           }
         ]
       },
-      workbox: {
-        runtimeCaching: [
-          {
-            urlPattern: /^https:\/\/story-api\.dicoding\.dev\/v1\//,
-            handler: 'NetworkFirst',
-            options: {
-              cacheName: 'story-api-cache',
-              expiration: {
-                maxEntries: 50,
-                maxAgeSeconds: 86400,
-              },
-              cacheableResponse: {
-                statuses: [0, 200]
-              }
-            }
-          },
-          {
-            urlPattern: ({ request }) => request.mode === 'navigate',
-            handler: 'NetworkFirst',
-            options: {
-              cacheName: 'html-cache'
-            }
-          },
-          {
-            urlPattern: ({ request }) =>
-              ['style', 'script', 'worker'].includes(request.destination),
-            handler: 'StaleWhileRevalidate',
-            options: {
-              cacheName: 'assets-cache'
-            }
-          }
-        ],
-        navigateFallback: '/index.html'
-      }
     })
   ]
 });

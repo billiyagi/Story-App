@@ -24,4 +24,17 @@ export default class CreateStoryPresenter {
 			this.#view.hideLoadingSubmit();
 		}
 	}
+
+	// async notifyUser() {
+	// 	try {
+	// 		const response = await this.#model.sendReportToMeViaNotification(this.#reportId);
+	// 		if (!response.ok) {
+	// 			console.error('notifyMe: response:', response);
+	// 			return;
+	// 		}
+	// 		console.log('notifyMe:', response.message);
+	// 	} catch (error) {
+	// 		console.error('notifyMe: error:', error);
+	// 	}
+	// }
 }

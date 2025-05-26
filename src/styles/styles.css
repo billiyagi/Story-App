@@ -286,6 +286,43 @@ footer {
   opacity: 0.5;
 }
 
+.notification-button {
+  border-radius: 40px;
+  border: none;
+  padding: 13px;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.notification-button__green {
+  background: #5cb338;
+}
+.notification-button__red {
+  background: rgb(255, 62, 62);
+}
+
+.notification-button__icon {
+  width: 17px;
+  margin: 0;
+}
+
+.notification-button:disabled {
+  opacity: 0.5;
+}
+
+.notification-button span {
+  display: none;
+  margin-left: 10px;
+}
+
+.notification-button:hover span {
+  display: block;
+}
+
 .transition {
   transition:
     width 300ms,
