@@ -29,6 +29,7 @@ export function generateAuthenticatedNavigationListTemplate() {
               <li><a href="#/">Beranda</a></li>
               <li><a href="#/about">About</a></li>
               <li><a href="#/create-story" class="only-for-mobile">Buat Story</a></li>
+              <li><a href="#/pinned-story">Pinned Story</a></li>
             </ul>`;
 }
 

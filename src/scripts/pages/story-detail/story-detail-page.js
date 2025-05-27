@@ -2,11 +2,14 @@ import StoryPresenter from "./story-detail-presenter";
 import * as StoryAPI from '../../data/api'
 import Map from "../../utils/map";
 import { showFormattedDate } from "../../utils";
+import { parseActivePathname } from "../../routes/url-parser";
+import Database from "../../data/database";
 
 
 export default class StoryDetail {
 
 	#presenter = null;
+	#storyId = null;
 
 	async render() {
 		return `<section class="container story-detail">
@@ -17,15 +20,16 @@ export default class StoryDetail {
 	}
 
 	async afterRender() {
-		this.#presenter = new StoryPresenter({
+		this.#presenter = new StoryPresenter(parseActivePathname().id, {
 			view: this,
-			model: StoryAPI
+			model: StoryAPI,
+			dbModel: Database
 		});
 
 		this.#presenter.getDetailStory();
 	}
 
-	renderStory({ name, description, photoUrl, createdAt, lat, lon }) {
+	renderStory({ name, description, photoUrl, createdAt }) {
 		document.querySelector('#story-detail-container').innerHTML = `
 			<div class="story-detail__image">
 				<img src="${photoUrl}" alt="Detail of ${name}'s Story">
@@ -52,8 +56,40 @@ export default class StoryDetail {
 				<div class="story-detail__title">Dibuat pada</div>
 				<div class="story-detail__description">${showFormattedDate(createdAt)}</div>
 			</div>
-			
+
+			<div class="flex justify-center items-center">
+			<button class="action-button__filled" id="pin-story-button">Pin This Story</button>
+			</div>
 			`;
+	}
+
+	setupPinStoryButton() {
+		const pinStoryButton = document.querySelector('#pin-story-button');
+
+		if (pinStoryButton) {
+			pinStoryButton.addEventListener('click', async () => {
+				await this.#presenter.handlePinStory();
+			})
+		}
+	}
+
+	pinnedStoryButton() {
+		const pinStoryButton = document.querySelector('#pin-story-button')
+		pinStoryButton.classList.add('pinned-story');
+		pinStoryButton.textContent = 'Unpinned Story'
+	}
+
+	unpinnedStoryButton() {
+		const pinStoryButton = document.querySelector('#pin-story-button')
+
+		if (pinStoryButton.classList.contains('pinned-story')) {
+			pinStoryButton.classList.remove('pinned-story');
+		}
+		pinStoryButton.textContent = 'Pin This Story'
+	}
+
+	showAlertPinStory(message) {
+		alert(message)
 	}
 
 	showLoadingRender() {

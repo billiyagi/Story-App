@@ -13,6 +13,8 @@ body {
 footer {
   padding-top: 1rem;
   padding-bottom: 3rem;
+  text-align: center;
+  margin-top: 2rem;
 }
 
 .alert {
@@ -630,6 +632,16 @@ footer {
   border: none;
 }
 
+#pin-story-button {
+  font-size: 1rem;
+  padding: 10px 20px;
+}
+.pinned-story {
+  background: rgb(61, 216, 0) !important;
+  color: #fff !important;
+  border: none;
+}
+
 /* Write your styles more here */
 
 @media screen and (width > 1000px) {
@@ -657,8 +669,8 @@ footer {
 }
 
 @media only screen and (max-width: 1048px) {
-  footer {
-    text-align: center;
+  .notification-button:hover span {
+    display: none;
   }
   .story-detail {
     width: 100%;
@@ -685,5 +697,12 @@ footer {
 
   .action-button__bordered {
     padding: 7px 15px;
+  }
+
+  .brand-name {
+    font-size: 1.7rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
   }
 }

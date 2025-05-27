@@ -33,8 +33,6 @@ registerRoute(
 
 // 🔔 Notifikasi Push
 self.addEventListener('push', (event) => {
-	console.log('Service worker pushing...');
-
 	async function handlePush() {
 		let data = {};
 
