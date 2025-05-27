@@ -76,7 +76,7 @@ export default class StoryDetail {
 	pinnedStoryButton() {
 		const pinStoryButton = document.querySelector('#pin-story-button')
 		pinStoryButton.classList.add('pinned-story');
-		pinStoryButton.textContent = 'Unpinned Story'
+		pinStoryButton.textContent = 'Unpinned This Story'
 	}
 
 	unpinnedStoryButton() {

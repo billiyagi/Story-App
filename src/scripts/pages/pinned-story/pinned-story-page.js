@@ -64,4 +64,9 @@ export default class PinnedStoryPage {
 	showOfflineRender() {
 		return alertHelper({ message: 'Anda sedang offline', type: 'alert__info' });
 	}
+
+	showPinnedStoryEmpty() {
+		document.querySelector('#story-list-container').innerHTML = `
+		<p class="pinned-empty">Your pinned story is empty</p>`
+	}
 }

@@ -12,8 +12,23 @@ export default class PinnedStoryPresenter {
 	async getStories() {
 		this.#view.showLoadingRender()
 		try {
+
+			/** 
+			 * Get all stories form DB Model
+			*/
 			const response = await this.#dbModel.getAllStory();
+
+			/** 
+			 * Render the list of stories
+			*/
 			this.#view.renderStory(response)
+
+			/** 
+			 * If there's no story pinned, show the empty information
+			*/
+			if (Array.isArray(response) && !response.length) {
+				this.#view.showPinnedStoryEmpty()
+			}
 		} catch (error) {
 
 			// Check if offline

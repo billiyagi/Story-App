@@ -642,6 +642,10 @@ footer {
   border: none;
 }
 
+.pinned-empty {
+  color: rgb(155, 155, 155);
+}
+
 /* Write your styles more here */
 
 @media screen and (width > 1000px) {
