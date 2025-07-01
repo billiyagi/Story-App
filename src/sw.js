@@ -31,6 +31,14 @@ registerRoute(
 	})
 );
 
+// Cache untuk gambar
+registerRoute(
+	({ request }) => request.destination === 'image',
+	new StaleWhileRevalidate({
+		cacheName: 'image-cache',
+	})
+);
+
 // 🔔 Notifikasi Push
 self.addEventListener('push', (event) => {
 	async function handlePush() {

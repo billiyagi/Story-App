@@ -4,6 +4,7 @@ import { getAccessToken, getLogout } from '../utils/auth';
 import { generateAuthenticatedNavigationActionListTemplate, generateAuthenticatedNavigationListTemplate, generateUnauthenticatedNavigationActionListTemplate, generateUnauthenticatedNavigationListTemplate, generateSubcribeButton } from '../templates';
 import { skipToContent, transitionHelper } from '../utils';
 import { isNotificationGranted, subscribe, isCurrentPushSubscriptionAvailable, unsubscribe } from '../utils/notification';
+import NotFound from './notfound/notfound-page';
 
 class App {
   #content = null;
@@ -83,6 +84,15 @@ class App {
     const isLogin = !!getAccessToken();
     const url = getActiveRoute();
     const page = routes[url];
+
+
+    const notFound = new NotFound()
+
+    if (!page) {
+      this.#setupNavigationList();
+      this.#content.innerHTML = await notFound.render();
+      return;
+    }
 
 
     // Redirect jika user belum login

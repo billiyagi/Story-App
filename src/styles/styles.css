@@ -849,8 +849,22 @@ footer a {
   color: rgb(155, 155, 155);
 }
 
-/* Write your styles more here */
+/* Not Found */
+.story-not-found {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  height: 500px;
+}
+.story-not-found__title {
+  font-size: 10rem;
+  opacity: 0.5;
+}
 
+/* Write your styles more here */
 @media screen and (width > 1000px) {
   .navigation-drawer {
     min-height: auto;
