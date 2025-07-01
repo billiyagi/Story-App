@@ -20,7 +20,6 @@ export default class HomePresenter {
 
 		try {
 			const response = await this.#model.getStories();
-			console.log(response)
 			this.#view.renderStory(response.listStory)
 		} catch (error) {
 			// Check if failed to fetch but its online
