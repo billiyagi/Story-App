@@ -909,7 +909,7 @@ footer a {
   }
   .story-list {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
     margin-top: 2rem;
     gap: 20px;
   }
