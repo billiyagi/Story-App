@@ -12,9 +12,9 @@ export default class StoryDetail {
 	#storyId = null;
 
 	async render() {
-		return `<section class="container story-detail">
+		return `<section class="story-detail top-gap">
 		<div id="alert-container"></div>
-        <div id="loading-container"></div>
+        <div id="loading-container" class="flex justify-center items-center"></div>
 			<div id="story-detail-container"></div>
 		</section>`
 	}
@@ -32,29 +32,33 @@ export default class StoryDetail {
 	renderStory({ name, description, photoUrl, createdAt }) {
 		document.querySelector('#story-detail-container').innerHTML = `
 			<div class="story-detail__image">
+				<h2>Thumbnail Story</h2>
 				<img src="${photoUrl}" alt="Detail of ${name}'s Story">
 			</div>
 
-			<div class="story-detail__item">
-				<div class="story-detail__title">Peta Lokasi</div>
-				<div class="story-detail__description">
-					<div id="map" class="story-detail__map"></div>
+			<div class="story-detail-description">
+				<h2>Story Detail</h2>
+				<div class="story-detail__item">
+					<div class="story-detail__title">Peta Lokasi</div>
+					<div class="story-detail__description">
+						<div id="map" class="story-detail__map"></div>
+					</div>
 				</div>
-			</div>
 
-			<div class="story-detail__item">
-				<div class="story-detail__title">Pembuat</div>
-				<div class="story-detail__description">${name}</div>
-			</div>
+				<div class="story-detail__item">
+					<div class="story-detail__title">Pembuat</div>
+					<div class="story-detail__description">${name}</div>
+				</div>
 
-			<div class="story-detail__item">
-				<div class="story-detail__title">Deskripsi</div>
-				<div class="story-detail__description">${description}</div>
-			</div>
-			
-			<div class="story-detail__item">
-				<div class="story-detail__title">Dibuat pada</div>
-				<div class="story-detail__description">${showFormattedDate(createdAt)}</div>
+				<div class="story-detail__item">
+					<div class="story-detail__title">Deskripsi</div>
+					<div class="story-detail__description">${description}</div>
+				</div>
+				
+				<div class="story-detail__item">
+					<div class="story-detail__title">Dibuat pada</div>
+					<div class="story-detail__description">${showFormattedDate(createdAt)}</div>
+				</div>
 			</div>
 
 			<div class="flex justify-center items-center">
@@ -94,9 +98,9 @@ export default class StoryDetail {
 
 	showLoadingRender() {
 		document.querySelector('#loading-container').innerHTML = `
-		  <div class="flex items-center justify-center gap-1">
-					<span class="loader loader__btn loader-dark"></span> <span>Loading Stories...</span>
-				</div>
+			<div class="flex items-center justify-center gap-1 loading-stories">
+				<span class="loader loader__btn loader-dark"></span> <p>Loading Stories...</p>
+			</div>
 		`;
 	}
 

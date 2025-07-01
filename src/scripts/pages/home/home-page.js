@@ -1,17 +1,16 @@
 import { storyCard } from "../../templates";
 import * as StoryAPI from '../../data/api'
 import HomePresenter from "./home-presenter";
-import { alertHelper } from "../../utils";
+import { alertHelper, trimText } from "../../utils";
 
 export default class HomePage {
   #presenter = null;
 
   async render() {
     return `
-      <section class="container">
-        <h1>List of Story</h1>
+      <section>
         <div id="alert-container"></div>
-        <div id="loading-container"></div>
+        <div id="loading-container" class="flex justify-center items-center"></div>
         <div class="story-list" id="story-list-container">
         </div>
       </section>
@@ -34,7 +33,7 @@ export default class HomePage {
       storyListContainer.innerHTML += storyCard({
         id: story.id,
         name: story.name,
-        description: story.description,
+        description: trimText(story.description),
         photoUrl: story.photoUrl,
         createdAt: story.createdAt,
         lat: story.lat,
@@ -46,7 +45,7 @@ export default class HomePage {
   showLoadingRender() {
     document.querySelector('#loading-container').innerHTML = `
       <div class="flex items-center justify-center gap-1">
-				<span class="loader loader__btn loader-dark"></span> <span>Loading Stories...</span>
+				<span class="loader loader__btn loader-dark"></span> <p>Loading Stories...</p>
 			</div>
     `;
   }

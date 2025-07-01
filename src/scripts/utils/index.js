@@ -2,13 +2,21 @@
  * @method showFormattedDate
  * transform date to formatted locale date
 */
-export function showFormattedDate(date, locale = 'en-US', options = {}) {
+export function showFormattedDate(date, locale = 'id-ID', options = {}) {
   return new Date(date).toLocaleDateString(locale, {
     year: 'numeric',
     month: 'long',
-    day: 'numeric',
+    day: '2-digit',
+    weekday: "long",
     ...options,
   });
+}
+
+export function trimText(text, maxLength = 50) {
+  const trimmed = text.trim();
+  return trimmed.length > maxLength
+    ? trimmed.slice(0, maxLength) + '...'
+    : trimmed;
 }
 
 export function skipToContent(element, mainContent) {

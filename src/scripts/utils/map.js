@@ -116,16 +116,37 @@ export default class Map {
 	constructor(selector, options = {}) {
 		this.#zoom = options.zoom ?? this.#zoom;
 
-		const tileOsm = tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-			attribution:
-				'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
+		const osmTile = tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
 		});
+
+		const esriTile = tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+			attribution: '&copy; <a href="https://www.esri.com/en-us/home" target="_blank">Esri</a>',
+		});
+
+		const cartoTile = tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+			attribution: '&copy; <a href="https://carto.com/" target="_blank">CARTO</a>',
+			subdomains: 'abcd',
+		});
+
+		const baseMaps = {
+			'OpenStreetMap': osmTile,
+			'Esri WorldStreetMap': esriTile,
+			'CartoDB Positron': cartoTile,
+		};
 
 		this.#map = map(document.querySelector(selector), {
 			zoom: this.#zoom,
 			scrollWheelZoom: false,
-			layers: [tileOsm],
+			layers: [osmTile],
 			...options,
 		});
+
+		osmTile.addTo(this.#map); // Set default layer
+		L.control.layers(baseMaps).addTo(this.#map);
+	}
+
+	addMapEventListener(eventName, callback) {
+		this.#map.addEventListener(eventName, callback);
 	}
 }

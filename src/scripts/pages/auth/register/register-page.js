@@ -32,7 +32,7 @@ export default class RegisterPage {
 				</div>
 
 				<div id="register-submit-container">
-					<button type="submit" class="action-button__filled">Register Akun</button>
+					<button type="submit" class="action-button__filled green-button">Register Akun</button>
 				</div>
 				<a href="#/login" class="action-button__bordered">Login</a>
 			</form>
@@ -80,9 +80,9 @@ export default class RegisterPage {
 
 	showLoadingSubmit() {
 		document.querySelector('#register-submit-container').innerHTML = `
-		<button type="submit" class="action-button__filled" id="submit-register-button" disabled>
+		<button type="submit" class="action-button__filled green-button" id="submit-register-button" disabled>
 			<div class="flex items-center justify-center gap-1">
-				<span class="loader loader__btn"></span> <span>Loading</span>
+				<span class="loader loader__btn"></span> <p>Loading</p>
 			</div>
 		</button>
 		`;
@@ -90,7 +90,7 @@ export default class RegisterPage {
 
 	hideLoadingSubmit() {
 		document.querySelector('#register-submit-container').innerHTML = `
-			<button type="submit" class="action-button__filled">Register Akun</button>
+			<button type="submit" class="action-button__filled green-button">Register Akun</button>
 		`;
 	}
 }

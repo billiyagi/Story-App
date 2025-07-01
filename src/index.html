@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Ephesis&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
     <title>String Story</title>
@@ -21,12 +21,15 @@
   </head>
   <body>
     <!-- Langsung tab agar langsung ke konten utama -->
-    <button id="skip-button" class="skip-link">Skip to main content</button>
     <header>
-      <div class="main-header container">
+      <!-- Langsung tab agar langsung ke konten utama -->
+      <button id="skip-button" class="skip-link">Skip to main content</button>
+      <div class="main-header">
         <div class="flex justify-center items-center gap-2">
           <button id="drawer-button" class="drawer-button">☰</button>
-          <a class="brand-name ephesis" href="#/">String Story</a>
+          <h1>
+            <a class="brand-name montserrat" href="#/">String Story</a>
+          </h1>
           <nav id="navigation-drawer" class="navigation-drawer"></nav>
         </div>
 
@@ -36,7 +39,7 @@
 
     <main id="main-content" class="main-content" tabindex="-1"></main>
 
-    <footer class="container">
+    <footer class="flex justify-center items-center">
       String story made with ❤️ and ☕, from
       <a href="https://github.com/billiyagi">Febry Billiyagi</a>
     </footer>

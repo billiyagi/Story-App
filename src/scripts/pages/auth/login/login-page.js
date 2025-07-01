@@ -29,7 +29,8 @@ export default class LoginPage {
 				</div>
 
 				<div id="login-submit-container">
-					<button type="submit" class="action-button__filled" id="submit-login-button">Login Akun</button>
+					<button type="submit" class="action-button__filled green-button" id="submit-login-button">
+					Login Akun</button>
 				</div>
 				<a href="#/register" class="action-button__bordered" id="link-register-button">Register Akun</a>
 			</form>
@@ -73,9 +74,9 @@ export default class LoginPage {
 
 	showLoadingSubmit() {
 		document.querySelector('#login-submit-container').innerHTML = `
-		<button type="submit" class="action-button__filled" id="submit-login-button" disabled>
+		<button type="submit" class="action-button__filled green-button" id="submit-login-button" disabled>
 			<div class="flex items-center justify-center gap-1">
-				<span class="loader loader__btn"></span> <span>Loading</span>
+				<span class="loader loader__btn"></span> <p>Loading</p>
 			</div>
 		</button>
 		`;
@@ -83,7 +84,7 @@ export default class LoginPage {
 
 	hideLoadingSubmit() {
 		document.querySelector('#login-submit-container').innerHTML = `
-			<button type="submit" class="action-button__filled" id="submit-login-button">Login Akun</button>
+			<button type="submit" class="action-button__filled green-button" id="submit-login-button">Login Akun</button>
 		`;
 	}
 }

@@ -46,7 +46,7 @@ export default class CreateStoryPage {
 							<select id="camera-select">
 							</select>
 							<div class="form-control__camera__tools_buttons">
-								<button id="camera-take-button" class="form-control__btn__filled" type="button">
+								<button id="camera-take-button" class="form-control__btn__filled green-button" type="button">
 									Tangkap Gambar Kamera
 								</button>
 							</div>
@@ -65,7 +65,7 @@ export default class CreateStoryPage {
 				</div>
 
 				<div id="create-story-submit-container">
-					<button type="submit" class="action-button__filled" name="submit">Submit Story</button>
+					<button type="submit" class="action-button__filled green-button" name="submit">Submit Story</button>
 				</div>
 			</form>
 		</section>
@@ -188,6 +188,10 @@ export default class CreateStoryPage {
 			*/
 			this.#updateLatLngInput(coordinate.lat, coordinate.lng)
 		})
+
+		map.addMapEventListener('click', (event) => {
+			draggableMarker.setLatLng(event.latlng);
+		});
 	}
 
 	#updateLatLngInput(latitude, longtitude) {
@@ -219,7 +223,7 @@ export default class CreateStoryPage {
 		document.querySelector('#create-story-submit-container').innerHTML = `
 		<button type="submit" class="action-button__filled" name="submit" disabled>
 			<div class="flex items-center justify-center gap-1">
-				<span class="loader loader__btn"></span> <span>Loading</span>
+				<span class="loader loader__btn"></span> <p>Loading</p>
 			</div>
 		</button>`
 	}
