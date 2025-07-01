@@ -37,7 +37,8 @@ export default defineConfig({
         'favicon-196x196.png',
         'favicon-512x512.png',
         'images/icons/plus.png', // pastikan file ini ada
-        'images/icons/info.png' // pastikan file ini ada
+        'images/icons/info.png', // pastikan file ini ada
+        'manifest.webmanifest'
       ],
       manifest: {
         id: '/index.html',
@@ -100,31 +101,45 @@ export default defineConfig({
         // Screenshot aplikasi
         screenshots: [
           {
-            src: 'images/screenshots/string-story-pc.png',
+            src: 'images/screenshots/desktop/login.png',
+            sizes: '1440x900',
+            type: 'image/png',
+            label: 'Tampilan Desktop Login',
+            form_factor: 'wide'
+          },
+          {
+            src: 'images/screenshots/desktop/home.png',
             sizes: '1440x900',
             type: 'image/png',
             label: 'Tampilan Desktop Home',
             form_factor: 'wide'
           },
           {
-            src: 'images/screenshots/string-story-pc-create-story.png',
+            src: 'images/screenshots/desktop/create.png',
             sizes: '1440x900',
             type: 'image/png',
             label: 'Tampilan Desktop New Story',
             form_factor: 'wide'
           },
           {
-            src: 'images/screenshots/string-story-mobile-create-story.png',
+            src: 'images/screenshots/mobile/login.png',
             sizes: '360x640',
             type: 'image/png',
-            label: 'Tampilan Mobile New Story',
+            label: 'Tampilan Mobile Login',
             form_factor: 'narrow'
           },
           {
-            src: 'images/screenshots/string-story-mobile.png',
+            src: 'images/screenshots/mobile/home.png',
             sizes: '360x640',
             type: 'image/png',
             label: 'Tampilan Mobile Home',
+            form_factor: 'narrow'
+          },
+          {
+            src: 'images/screenshots/mobile/about.png',
+            sizes: '360x640',
+            type: 'image/png',
+            label: 'Tampilan Mobile Tentang',
             form_factor: 'narrow'
           }
         ]

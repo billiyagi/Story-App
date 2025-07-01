@@ -9,15 +9,22 @@ export default class HomePresenter {
 
 	async getStories() {
 		this.#view.showLoadingRender()
+		const isOnline = navigator.onLine;
+
+		/** 
+		 * Check if Offline
+		*/
+		if (!navigator.onLine) {
+			this.#view.showOfflineRender()
+		}
+
 		try {
 			const response = await this.#model.getStories();
+			console.log(response)
 			this.#view.renderStory(response.listStory)
 		} catch (error) {
-
-			// Check if offline
-			if (!navigator.onLine) {
-				this.#view.showOfflineRender()
-			} else {
+			// Check if failed to fetch but its online
+			if (isOnline) {
 				this.#view.fetchingStoriesFailed(error)
 			}
 		} finally {

@@ -7,7 +7,7 @@ precacheAndRoute(self.__WB_MANIFEST);
 
 // API cache
 registerRoute(
-	({ url }) => url.origin === 'https://story-api.dicoding.dev/v1',
+	({ url }) => url.origin === 'https://story-api.dicoding.dev',
 	new NetworkFirst({
 		cacheName: 'story-api-cache',
 		networkTimeoutSeconds: 10,
