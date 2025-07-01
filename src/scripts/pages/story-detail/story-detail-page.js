@@ -59,10 +59,10 @@ export default class StoryDetail {
 					<div class="story-detail__title">Dibuat pada</div>
 					<div class="story-detail__description">${showFormattedDate(createdAt)}</div>
 				</div>
-			</div>
 
-			<div class="flex justify-center items-center">
-			<button class="action-button__filled" id="pin-story-button">Pin This Story</button>
+				<div class="flex justify-center items-center">
+					<button class="action-button__filled green-button" id="pin-story-button">Pin This Story</button>
+				</div>
 			</div>
 			`;
 	}

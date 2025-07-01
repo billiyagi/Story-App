@@ -28,6 +28,7 @@ export function generateAuthenticatedNavigationListTemplate() {
             <ul id="nav-list" class="nav-list">
               <li><a href="#/">Beranda</a></li>
               <li><a href="#/about">About</a></li>
+              <li><a href="#/pinned-story">Pinned</a></li>
               <li><a href="#/create-story" class="only-for-mobile">Buat Story</a></li>
             </ul>`;
 }
