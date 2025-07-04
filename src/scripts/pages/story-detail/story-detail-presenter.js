@@ -1,4 +1,3 @@
-import { parseActivePathname } from "../../routes/url-parser";
 export default class StoryPresenter {
 	#view;
 	#model;
@@ -16,7 +15,7 @@ export default class StoryPresenter {
 	async getDetailStory() {
 		this.#view.showLoadingRender()
 		try {
-			const response = await this.#model.getStoryById(parseActivePathname().id);
+			const response = await this.#model.getStoryById(this.#storyId);
 			this.#view.renderStory(response.story)
 			this.#view.renderMapLocation({
 				lat: response.story.lat,

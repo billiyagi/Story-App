@@ -11,6 +11,7 @@ export default class HomePage {
       <section>
         <div id="alert-container"></div>
         <div id="loading-container" class="flex justify-center items-center"></div>
+        <h1 class="my">List Stories</h1>
         <div class="story-list" id="story-list-container">
         </div>
       </section>

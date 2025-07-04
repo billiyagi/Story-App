@@ -9,13 +9,13 @@ import Database from "../../data/database";
 export default class StoryDetail {
 
 	#presenter = null;
-	#storyId = null;
 
 	async render() {
 		return `<section class="story-detail top-gap">
 		<div id="alert-container"></div>
         <div id="loading-container" class="flex justify-center items-center"></div>
-			<div id="story-detail-container"></div>
+		<h1 class="my">Story Detail</h1>
+		<div id="story-detail-container"></div>
 		</section>`
 	}
 
