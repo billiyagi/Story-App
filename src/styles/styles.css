@@ -757,6 +757,9 @@ footer {
 .new-form__camera__canvas {
   height: 100px;
 }
+.new-form__camera__video {
+  width: 100%;
+}
 .camera__open {
   display: block !important;
 }

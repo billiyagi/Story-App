@@ -2,7 +2,7 @@ export default class AboutPage {
   async render() {
     return `
       <section class="container top-gap">
-        <h2>About Page</h2>
+        <h1>About Page</h1>
         
           <p class="my">
             Hii! Saya Febry Billiyagi, seorang pengembang web yang antusias dalam membangun aplikasi yang bermakna dan berdampak. Aplikasi ini, "Strings App", merupakan proyek pribadi saya yang dibuat dengan sepenuh hati dan secangkir teh di samping laptop.
